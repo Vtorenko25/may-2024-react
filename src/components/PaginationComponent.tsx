@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, {FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-const PaginationComponent = () => {
+type PaginationProps =
+{flag:boolean}
+
+const PaginationComponent:FC<PaginationProps> = ({flag}) => {
     const [query, setQuery]= useSearchParams({page: '1'});
 
     const onclicPrevHadler = ()=>{
@@ -23,7 +26,7 @@ const PaginationComponent = () => {
     return (
         <div>
             <button onClick={onclicPrevHadler}>prev</button>
-            <button onClick={onclicNextHadler}>next</button>
+            <button onClick={onclicNextHadler} disabled={flag}>next</button>
         </div>
     );
 };

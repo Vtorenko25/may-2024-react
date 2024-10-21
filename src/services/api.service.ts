@@ -9,15 +9,14 @@ const axiosInstance = axios.create({
 
 export const apiService = {
     product: {
-        getAll : async  (page:number):Promise<IProduct[]> => {
+        getAll : async  (page:number):Promise<IDJResponce & {products: IProduct[]}> => {
             const skip = (page - 1) * page;
-            const {data:{products}} = await axiosInstance.get<IDJResponce & {products: IProduct[]} >('/products/', {
+            const {data} = await axiosInstance.get<IDJResponce & {products: IProduct[]} >('/products/', {
                 params:{
                     skip:skip
                 }
             });
-            console.log(products);
-            return products;
+            return data;
 }
     }
 }
